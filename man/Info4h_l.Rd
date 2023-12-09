@@ -7,6 +7,8 @@
 Info4h_l(pars)
 }
 \arguments{
+\item{pars}{vector with length of 5}
+
 \item{X}{The benefit from acting}
 
 \item{k}{The cost of inquiry}
@@ -24,5 +26,15 @@ The optimal utility in Info Set 4
 Calculate utility w/o action in information set 4, that is, after receiving a good signal
 }
 \examples{
-u1 <- Info4h_l(c(1, 2, 3, 0.4, 0.7));
+X <- 5;
+k <- 1;
+h <- 10;
+p <- 0.4;
+alpha <- 0.8;
+parameter <- c(X, k, h, p, alpha);
+Info4h_l(parameter);
+UInfo4h_l <- as.numeric(capture.output(Info4h_l(parameter))[1]);
+cat("Utility under optimal strategy (Info Set 4):", UInfo4h_l, "\n")
+DInfo4h_l <- as.numeric(capture.output(Info4h_l(parameter))[2]);
+cat("U(act) - U(no act) (Info Set 4):", DInfo4h_l, "\n")
 }

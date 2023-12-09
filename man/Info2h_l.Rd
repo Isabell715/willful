@@ -7,6 +7,8 @@
 Info2h_l(pars)
 }
 \arguments{
+\item{pars}{vector with length of 5}
+
 \item{X}{The benefit from acting}
 
 \item{k}{The cost of inquiry}
@@ -24,5 +26,15 @@ The optimal utility in Info Set 2
 Calculate utility w/o action in information set 2, that is, if the Dm does not inquire
 }
 \examples{
-u1 <- Info2h_l(c(1, 2, 3, 0.4, 0.7));
+X <- 5;
+k <- 1;
+h <- 10;
+p <- 0.4;
+alpha <- 0.8;
+parameter <- c(X, k, h, p, alpha);
+Info2h_l(parameter);
+UInfo2h_l <- as.numeric(capture.output(Info2h_l(parameter))[1]);
+cat("Utility under optimal strategy (Info Set 2):", UInfo2h_l, "\n")
+DInfo2h_l <- as.numeric(capture.output(Info2h_l(parameter))[2]);
+cat("U(act) - U(no act) (Info Set 2):", DInfo2h_l, "\n")
 }

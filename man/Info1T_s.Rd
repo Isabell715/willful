@@ -7,6 +7,8 @@
 Info1T_s(pars)
 }
 \arguments{
+\item{pars}{vector with length of 6}
+
 \item{X}{The benefit from acting}
 
 \item{k}{The cost of inquiry}
@@ -26,5 +28,35 @@ The optimal utility in Info Set 1
 Calculate the expected utility in information set 1
 }
 \examples{
-u1 <- Info1T_l(c(1, 2, 3, 0.4, 0.7, 3));
+X <- 5;
+k <- 1;
+T0 <- 10;
+p <- 0.4;
+alpha <- 0.8;
+T1 <- 5;
+parameter <- c(X, k, T0, p, alpha, T1);
+Info1T_s(parameter);
+UInfo1T_s <- as.numeric(capture.output(Info1T_s(parameter))[1]);
+cat("Utility under optimal strategy (Info Set 1):", UInfo1T_s, "\n")
+DInfo1T_s <- as.numeric(capture.output(Info1T_s(parameter))[2]);
+cat("U(act) - U(no act) (Info Set 1):", DInfo1T_s, "\n")
+
+X_list <- seq(0.00, 10, by=.01);
+alpha_list <- seq(0.5, 1, by = .001);
+X <- X_list;
+k <- k_list;
+T0 <- 10;
+p <- 0.5;
+alpha <- 0.8;
+T1 <- 5;
+matrixW = matrix(data=NA, nrow=length(X_list), ncol=length(k_list));
+for(i in 1:length(X_list)){
+  for(j in 1:length(k_list)){
+    X <- X_list[i]
+    k <- k_list[j]
+    parameter <- c(X, k, T0, p, alpha, T1)
+    DInfo1T_s <- as.numeric(capture.output(Info1T_s(parameter))[2])
+    matrixW[i,j] <- DInfo1T_s
+  }
+}
 }
