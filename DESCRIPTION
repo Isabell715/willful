@@ -1,0 +1,11 @@
+Package: willful
+Type: Package
+Title: calculate utility under wilful ignorance
+Version: 0.0.0.9000
+Encoding: UTF-8
+Imports:
+        ggplot2,
+        stringr,
+        stringi,
+        dplyr
+RoxygenNote: 7.2.3
