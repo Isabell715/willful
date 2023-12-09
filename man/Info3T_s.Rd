@@ -7,6 +7,8 @@
 Info3T_s(pars)
 }
 \arguments{
+\item{pars}{vector with length of 6}
+
 \item{X}{The benefit from acting}
 
 \item{k}{The cost of inquiry}
@@ -26,5 +28,16 @@ The optimal utility in Info Set 3
 Calculate utility w/o action in information set 3, that is, after receiving a bad signal
 }
 \examples{
-u1 <- Info3T_l(c(1, 2, 3, 0.4, 0.7, 3));
+X <- 5;
+k <- 1;
+T0 <- 10;
+p <- 0.4;
+alpha <- 0.8;
+T1 <- 5;
+parameter <- c(X, k, T0, p, alpha, T1);
+Info3T_s(parameter);
+UInfo3T_s <- as.numeric(capture.output(Info3T_s(parameter))[1]);
+cat("Utility under optimal strategy (Info Set 3):", UInfo3T_s, "\n")
+DInfo3T_s <- as.numeric(capture.output(Info3T_s(parameter))[2]);
+cat("U(act) - U(no act) (Info Set 3):", DInfo3T_s, "\n")
 }

@@ -8,9 +8,18 @@ scatter(x, y, z = matrixW)
 }
 \description{
 The function only works when the definition of variables ends with "_list"
+}
+\details{
 The function plot the relationship between expected utility after inquiry and
 expected utility without inquiry, given two variables x and y
+
 I first create 3 vectors of the same length, making x and y and the final
 utility difference a one to one match
+
 Then I use ggplot to group z into 3, assigning different groups different colors
+}
+\examples{
+X_list <- seq(0.00, 10, by=.01);
+alpha_list <- seq(0.5, 1, by = .001);
+scatter(X_list, k_list)
 }

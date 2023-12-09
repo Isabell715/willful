@@ -1,18 +1,25 @@
 #' Scatter Plot indicating the utility difference w/o inquiry
 #'
 #' The function only works when the definition of variables ends with "_list"
+#'
 #' The function plot the relationship between expected utility after inquiry and
 #' expected utility without inquiry, given two variables x and y
+#'
 #' I first create 3 vectors of the same length, making x and y and the final
 #' utility difference a one to one match
+#'
 #' Then I use ggplot to group z into 3, assigning different groups different colors
+#' @examples
+#' X_list <- seq(0.00, 10, by=.01);
+#' alpha_list <- seq(0.5, 1, by = .001);
+#' scatter(X_list, k_list)
 #' @export
 scatter <- function(x, y, z = matrixW){
   #Define variables and put into dataframe
-  vecX <- c(rep(x, times = length(y))) #X_1, X_2, X_3...
-  vecY <- c(rep(y, each = length(x))) #k_1, k_1, k_1...
+  vecX <- c(rep(x, times = length(y))) #x_1, x_2, x_3...
+  vecY <- c(rep(y, each = length(x))) #y_1, y_1, y_1...
   vecW<- as.data.frame(z) %>%
-    unlist(use.names=FALSE) #(X_1, k_1), (X_2, k_1), (X_3, k_1)...
+    unlist(use.names=FALSE) #(x_1, y_1), (x_2, y_1), (x_3, y_1)...
   df <- data.frame(x = vecX, y = vecY, z = vecW)
 
   #For labs and for figure title

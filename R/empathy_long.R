@@ -1,4 +1,5 @@
 #' Calculate utility w/o action in information set 4, that is, after receiving a good signal
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
@@ -6,7 +7,17 @@
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 4
 #' @examples
-#' u1 <- Info4h_l(c(1, 2, 3, 0.4, 0.7));
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info4h_l(parameter);
+#' UInfo4h_l <- as.numeric(capture.output(Info4h_l(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 4):", UInfo4h_l, "\n")
+#' DInfo4h_l <- as.numeric(capture.output(Info4h_l(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 4):", DInfo4h_l, "\n")
 #' @export
 Info4h_l <- function(pars){
   Biga <- pars[1] - pars[2] - pars[3]
@@ -34,6 +45,7 @@ Info4h_l <- function(pars){
 
 
 #' Calculate utility w/o action in information set 3, that is, after receiving a bad signal
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
@@ -41,7 +53,17 @@ Info4h_l <- function(pars){
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 3
 #' @examples
-#' u1 <- Info3h_l(c(1, 2, 3, 0.4, 0.7));
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info3h_l(parameter);
+#' UInfo3h_l <- as.numeric(capture.output(Info3h_l(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 3):", UInfo3h_l, "\n")
+#' DInfo3h_l <- as.numeric(capture.output(Info3h_l(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 3):", DInfo3h_l, "\n")
 #' @export
 Info3h_l <- function(pars){
   Biba <- pars[1] - pars[2] - pars[3]
@@ -69,6 +91,7 @@ Info3h_l <- function(pars){
 }
 
 #' Calculate utility w/o action in information set 2, that is, if the Dm does not inquire
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
@@ -76,7 +99,17 @@ Info3h_l <- function(pars){
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 2
 #' @examples
-#' u1 <- Info2h_l(c(1, 2, 3, 0.4, 0.7));
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info2h_l(parameter);
+#' UInfo2h_l <- as.numeric(capture.output(Info2h_l(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 2):", UInfo2h_l, "\n")
+#' DInfo2h_l <- as.numeric(capture.output(Info2h_l(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 2):", DInfo2h_l, "\n")
 #' @export
 Info2h_l <- function(pars){
   Bna <- pars[1] - pars[3]
@@ -102,6 +135,7 @@ Info2h_l <- function(pars){
 }
 
 #' Calculate the expected utility in information set 1
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
@@ -109,7 +143,37 @@ Info2h_l <- function(pars){
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 1
 #' @examples
-#' u1 <- Info1h_l(c(1, 2, 3, 0.4, 0.7));
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info1h_l(parameter);
+#' UInfo1h_l <- as.numeric(capture.output(Info1h_l(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 1):", UInfo1h_l, "\n")
+#' DInfo1h_l <- as.numeric(capture.output(Info1h_l(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 1):", DInfo1h_l, "\n")
+#'
+#' #'
+#' @examples
+#' X_list <- seq(0.00, 10, by=.01);
+#' alpha_list <- seq(0.5, 1, by = .001);
+#' X <- X_list;
+#' k <- k_list;
+#' h <- 10;
+#' p <- 0.5;
+#' alpha <- 0.8;
+#' matrixW = matrix(data=NA, nrow=length(X_list), ncol=length(k_list));
+#' for(i in 1:length(X_list)){
+#'   for(j in 1:length(k_list)){
+#'     X <- X_list[i]
+#'     k <- k_list[j]
+#'     parameter <- c(X, k, h, p, alpha)
+#'     DInfo1h_l <- as.numeric(capture.output(Info1h_l(parameter))[2])
+#'     matrixW[i,j] <- DInfo1h_l
+#'   }
+#' }
 #' @export
 Info1h_l <- function(pars){
   UInfo4h_l <- as.numeric(capture.output(Info4h_l(parameter))[1])

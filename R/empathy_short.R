@@ -1,12 +1,23 @@
 #' Calculate utility w/o action in information set 4, that is, after receiving a good signal
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
 #' @param p The probability of bad state
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 4
-#' @examples 
-#' u1 <- Info4h_l(c(1, 2, 3, 0.4, 0.7));
+#' @examples
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info4h_s(parameter);
+#' UInfo4h_s <- as.numeric(capture.output(Info4h_s(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 4):", UInfo4h_s, "\n")
+#' DInfo4h_s <- as.numeric(capture.output(Info4h_s(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 4):", DInfo4h_s, "\n")
 #' @export
 Info4h_s <- function(pars){
   Biga <- pars[1] - pars[2]
@@ -27,7 +38,7 @@ Info4h_s <- function(pars){
   } else {
     cat("The DM prefers not to act when receiving good news", "\n")
   }
-  
+
   return(p4)
   return(UInfo4h_s)
   return(DInfo4h_s)
@@ -35,14 +46,25 @@ Info4h_s <- function(pars){
 
 
 #' Calculate utility w/o action in information set 3, that is, after receiving a bad signal
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
 #' @param p The probability of bad state
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 3
-#' @examples 
-#' u1 <- Info3h_l(c(1, 2, 3, 0.4, 0.7));
+#' @examples
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info3h_s(parameter);
+#' UInfo3h_s <- as.numeric(capture.output(Info3h_s(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 3):", UInfo3h_s, "\n")
+#' DInfo3h_s <- as.numeric(capture.output(Info3h_s(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 3):", DInfo3h_s, "\n")
 #' @export
 Info3h_s <- function(pars){
   Biba <- pars[1] - pars[2] - pars[3]
@@ -63,21 +85,32 @@ Info3h_s <- function(pars){
   } else {
     cat("The DM prefers not to act when receiving bad news", "\n")
   }
-  
+
   return(p3)
   return(UInfo3h_s)
   return(DInfo3h_s)
 }
 
 #' Calculate utility w/o action in information set 2, that is, if the Dm does not inquire
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
 #' @param p The probability of bad state
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 2
-#' @examples 
-#' u1 <- Info2h_l(c(1, 2, 3, 0.4, 0.7));
+#' @examples
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info2h_s(parameter);
+#' UInfo2h_s <- as.numeric(capture.output(Info2h_s(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 2):", UInfo2h_s, "\n")
+#' DInfo2h_s <- as.numeric(capture.output(Info2h_s(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 2):", DInfo2h_s, "\n")
 #' @export
 Info2h_s <- function(pars){
   Bna <- pars[1] - pars[3]
@@ -97,20 +130,51 @@ Info2h_s <- function(pars){
   } else {
     cat("The DM prefers not to act when not inquiring", "\n")
   }
-  
+
   return(UInfo2h_s)
   return(DInfo2h_s)
 }
 
 #' Calculate the expected utility in information set 1
+#' @param pars vector with length of 5
 #' @param X The benefit from acting
 #' @param k The cost of inquiry
 #' @param h The negative utility from showing empathy
 #' @param p The probability of bad state
 #' @param alpha The probability of correct inquiry
 #' @return The optimal utility in Info Set 1
-#' @examples 
-#' u1 <- Info1h_l(c(1, 2, 3, 0.4, 0.7));
+#' @examples
+#' X <- 5;
+#' k <- 1;
+#' h <- 10;
+#' p <- 0.4;
+#' alpha <- 0.8;
+#' parameter <- c(X, k, h, p, alpha);
+#' Info1h_s(parameter);
+#' UInfo1h_s <- as.numeric(capture.output(Info1h_s(parameter))[1]);
+#' cat("Utility under optimal strategy (Info Set 1):", UInfo1h_s, "\n")
+#' DInfo1h_s <- as.numeric(capture.output(Info1h_s(parameter))[2]);
+#' cat("U(act) - U(no act) (Info Set 1):", DInfo1h_s, "\n")
+#'
+#' #'
+#' @examples
+#' X_list <- seq(0.00, 10, by=.01);
+#' alpha_list <- seq(0.5, 1, by = .001);
+#' X <- X_list;
+#' k <- k_list;
+#' h <- 10;
+#' p <- 0.5;
+#' alpha <- 0.8;
+#' matrixW = matrix(data=NA, nrow=length(X_list), ncol=length(k_list));
+#' for(i in 1:length(X_list)){
+#'   for(j in 1:length(k_list)){
+#'     X <- X_list[i]
+#'     k <- k_list[j]
+#'     parameter <- c(X, k, h, p, alpha)
+#'     DInfo1h_s <- as.numeric(capture.output(Info1h_s(parameter))[2])
+#'     matrixW[i,j] <- DInfo1h_s
+#'   }
+#' }
 #' @export
 Info1h_s <- function(pars){
   UInfo4h_s <- as.numeric(capture.output(Info4h_s(parameter))[1])
@@ -131,7 +195,7 @@ Info1h_s <- function(pars){
   } else {
     cat("The DM prefers not to inquire", "\n")
   }
-  
+
   return(UInfo1h_s)
   return(DInfo1h_s)
 }
